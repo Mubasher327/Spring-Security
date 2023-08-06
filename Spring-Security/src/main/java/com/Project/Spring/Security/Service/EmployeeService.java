@@ -1,34 +1,26 @@
 package com.Project.Spring.Security.Service;
-import com.Project.Spring.Security.Entity.Employee;
-import com.Project.Spring.Security.Model.EmployeeModel;
-import com.Project.Spring.Security.Repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.Project.Spring.Security.Model.Employee;
+import org.springframework.security.config.web.server.ServerSecurityMarker;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 public class EmployeeService {
 
-    @Autowired
-    EmployeeRepository employeeRepository;
+    private List<Employee> save= new ArrayList<>();
 
-    public String addEmployee(Employee employee){
-        employeeRepository.save(employee);
-        return "save Successfully";
+    public EmployeeService(){
+        save.add(new Employee(UUID.randomUUID().toString(),"Mubasher","mubasher@gmail.com"));
+        save.add(new Employee(UUID.randomUUID().toString(),"Kashaf","Kashaf@gmail.com"));
+
     }
 
-    public List<EmployeeModel> getAllEmployee(){
-        return employeeRepository.findAll().stream().map(EmployeeModel::new).collect(Collectors.toList());
+    public List<Employee>getEmployee(){
+        return this.save;
     }
 
-    public Employee getEmployeeById(long id)
-    {
-        return employeeRepository.findById(id).get();
-    }
-
-    public String deleteById(long id) {
-        employeeRepository.deleteById(id);
-        return "Successfully deleted";
-    }
 }

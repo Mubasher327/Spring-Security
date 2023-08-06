@@ -1,11 +1,13 @@
 package com.Project.Spring.Security.Controller;
 
-import com.Project.Spring.Security.Entity.Employee;
-import com.Project.Spring.Security.Model.EmployeeModel;
+import com.Project.Spring.Security.Model.Employee;
 import com.Project.Spring.Security.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -14,26 +16,17 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
-    @PostMapping("/save")
-    public String  addEmployee(@RequestBody Employee employee){
-        employeeService.addEmployee(employee);
-        return "save";
+
+    @GetMapping("/get")
+    public List<Employee> getEmployee(){
+        System.out.println("Get Employees");
+        return employeeService.getEmployee();
     }
 
-    @GetMapping("/list")
-    public List<EmployeeModel> getEmployeelist()
-    {
-        return employeeService.getAllEmployee();
-    }
-    @GetMapping("/ById/{id}")
-    public Employee getBooks(@PathVariable("id") long empl_id)
-    {
+    @GetMapping("/current-employee")
+    public String getLoggedInEmployee(Principal principal){
 
-        return employeeService.getEmployeeById(empl_id);
+        return principal.getName();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable("id") long id){
-        return employeeService.deleteById(id);
-    }
 }
