@@ -1,6 +1,6 @@
 package com.Project.Spring.Security.Controller;
 
-import com.Project.Spring.Security.Model.Employee;
+import com.Project.Spring.Security.Entities.Employee;
 import com.Project.Spring.Security.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

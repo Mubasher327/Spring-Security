@@ -1,7 +1,9 @@
 package com.Project.Spring.Security.Service;
 
-import com.Project.Spring.Security.Model.Employee;
-import org.springframework.security.config.web.server.ServerSecurityMarker;
+import com.Project.Spring.Security.Entities.Employee;
+import com.Project.Spring.Security.Repositories.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,17 +12,19 @@ import java.util.UUID;
 
 @Service
 public class EmployeeService {
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    private List<Employee> save= new ArrayList<>();
-
-    public EmployeeService(){
-        save.add(new Employee(UUID.randomUUID().toString(),"Mubasher","mubasher@gmail.com"));
-        save.add(new Employee(UUID.randomUUID().toString(),"Kashaf","Kashaf@gmail.com"));
-
+    public List<Employee> getEmployee() {
+        return employeeRepository.findAll();
     }
 
-    public List<Employee>getEmployee(){
-        return this.save;
+    public Employee createEmploye(Employee employee) {
+        employee.setId(UUID.randomUUID().toString());
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        return employeeRepository.save(employee);
     }
 
 }

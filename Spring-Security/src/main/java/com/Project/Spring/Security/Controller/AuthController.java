@@ -1,8 +1,10 @@
-package com.Project.Spring.Security.Config;
+package com.Project.Spring.Security.Controller;
 
+import com.Project.Spring.Security.Entities.Employee;
 import com.Project.Spring.Security.Model.JwtRequest;
 import com.Project.Spring.Security.Model.JwtResponse;
 import com.Project.Spring.Security.Secure.JwtHelper;
+import com.Project.Spring.Security.Service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,8 @@ public class AuthController {
     @Autowired
     private AuthenticationManager manager;
 
-
+    @Autowired
+    private EmployeeService employeeService;
     @Autowired
     private JwtHelper helper;
 
@@ -63,6 +66,11 @@ public class AuthController {
     @ExceptionHandler(BadCredentialsException.class)
     public String exceptionHandler() {
         return "Credentials Invalid !!";
+    }
+
+    @PostMapping("/create-employee")
+    public Employee createEmployee(@RequestBody Employee employee){
+        return employeeService.createEmploye(employee);
     }
 
 }
