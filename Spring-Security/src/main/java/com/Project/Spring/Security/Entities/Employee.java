@@ -3,10 +3,7 @@ package com.Project.Spring.Security.Entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,6 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @ToString
 @Entity
+@Builder
 @Table(name="employee")
 public class Employee implements UserDetails {
 @Id
