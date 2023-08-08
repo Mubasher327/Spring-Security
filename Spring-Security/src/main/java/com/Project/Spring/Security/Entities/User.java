@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Data
@@ -16,17 +17,33 @@ import java.util.Collection;
 public class User implements UserDetails {
     @Id
   @GeneratedValue (strategy = GenerationType.IDENTITY)
-   @Column(name="user_Id")
+   @Column(name="ID")
     private Long Id;
 
-    @Column(name="user-name")
+    @Column(name="Name")
     private String name;
 
-    @Column(name="user-email")
+    @Column(name="Email")
     private String email;
 
-    @Column(name="user-password")
-    private String password;
+    @Column(name = "CreatedAt")
+    private LocalDateTime createdAt;
+
+    @Column(name = "UpdatedAt")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+
+
 
 //    @ManyToOne
 //    @JoinColumn(name="admin-Id")
@@ -36,6 +53,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
         return null;
     }
 

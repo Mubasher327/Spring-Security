@@ -1,7 +1,6 @@
 package com.Project.Spring.Security.Controller;
 
-import com.Project.Spring.Security.Entities.Admin;
-import com.Project.Spring.Security.Entities.Books;
+import com.Project.Spring.Security.Entities.Book;
 import com.Project.Spring.Security.Model.BookModel;
 import com.Project.Spring.Security.Service.Bookservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class BookController {
         return bookservice.getBooks();
     }
     @GetMapping("/get/{id}")
-    public Books getBookByid(@PathVariable(name = "id")long Id){
+    public Book getBookByid(@PathVariable(name = "id")long Id){
         return bookservice.getBookById(Id);
     }
 

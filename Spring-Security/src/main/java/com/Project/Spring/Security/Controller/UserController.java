@@ -1,6 +1,5 @@
 package com.Project.Spring.Security.Controller;
 
-import com.Project.Spring.Security.Entities.Books;
 import com.Project.Spring.Security.Entities.User;
 import com.Project.Spring.Security.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -29,10 +27,12 @@ public class UserController {
         return userService.getUserById(Id);
     }
 
-    @GetMapping("/current-User")
-    public String getLoggedInUser(Principal principal){
+//    @GetMapping("/current-User")
+//    public String getLoggedInUser(Principal principal){
+//
+//        return principal.getName();
+//    }
 
-        return principal.getName();
-    }
+
 
 }

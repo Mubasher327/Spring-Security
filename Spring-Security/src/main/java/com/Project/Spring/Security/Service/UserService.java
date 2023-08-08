@@ -1,6 +1,5 @@
 package com.Project.Spring.Security.Service;
 
-import com.Project.Spring.Security.Entities.Books;
 import com.Project.Spring.Security.Entities.User;
 import com.Project.Spring.Security.Model.UserModel;
 import com.Project.Spring.Security.Repositories.UserRepository;
@@ -9,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserService {

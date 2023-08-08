@@ -1,6 +1,6 @@
 package com.Project.Spring.Security.Model;
 
-import com.Project.Spring.Security.Entities.Books;
+import com.Project.Spring.Security.Entities.Book;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,22 +11,28 @@ import lombok.NoArgsConstructor;
 public class BookModel {
 
     private long id;
+    private long isbn;
     private String title;
     private String authorName;
+    private String category;
 
-    public BookModel (Books books){
+    public BookModel (Book book){
 
-        this.setId(books.getId());
-        this.setTitle(books.getTitle());
-        this.setAuthorName(books.getAuthorName());
+        this.setId(book.getId());
+        this.setIsbn(book.getIsbn());
+        this.setTitle(book.getTitle());
+        this.setAuthorName(book.getAuthorName());
+        this.setCategory(book.getCategory());
     }
 
-    public Books dissamble(){
+    public Book dissamble(){
 
-        Books books=new Books();
-        books.setId(id);
-        books.setTitle(title);
-        books.setAuthorName(authorName);
-        return books;
+        Book book =new Book();
+        book.setId(id);
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        book.setAuthorName(authorName);
+        book.setCategory(category);
+        return book;
     }
 }

@@ -38,7 +38,7 @@ public class SecurityConfig {
                 "Admin",
                 "Admin/create-user",
                 "Admin/add-book",
-                "Admin/books/list",
+                "Admin/books  /list",
                 "Admin/list",
                 "Admin/get/{id}"
         };
