@@ -1,5 +1,6 @@
 package com.Project.Spring.Security.Service;
 
+import com.Project.Spring.Security.Entities.Books;
 import com.Project.Spring.Security.Entities.User;
 import com.Project.Spring.Security.Model.UserModel;
 import com.Project.Spring.Security.Repositories.UserRepository;
@@ -17,7 +18,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<User> getEmployee() {
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 
@@ -26,4 +27,7 @@ public class UserService {
         return new UserModel(userRepository.save(userModel.dissamble()));
     }
 
+    public User getUserById(long id) {
+        return userRepository.findById(id).get();
+    }
 }

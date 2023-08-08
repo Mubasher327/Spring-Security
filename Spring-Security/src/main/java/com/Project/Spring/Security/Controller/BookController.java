@@ -16,11 +16,7 @@ public class BookController {
     @Autowired
     Bookservice bookservice;
 
-    @PostMapping
-    public String addbooks(@RequestBody BookModel books){
-        bookservice.addBook(books);
-        return "Book add Successfully";
-    }
+
 
     @GetMapping("/list")
     public List<BookModel> getBookList(){
