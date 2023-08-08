@@ -27,11 +27,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        final String[] PUBLIC_URLS= {
+
+                "/test",
+                "/auth/login",
+                "auth/create-user",
+                "Books",
+                "Books/list",
+                "Books/search",
+                "Books/get/{id}",
+                "Admin",
+                "Admin/list",
+                "Admin/get/{id}"
+        };
+
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests().
-                requestMatchers("/test").authenticated().requestMatchers("/auth/login")
-                .permitAll()
-                .requestMatchers("/auth/create-employee")
+                 requestMatchers(PUBLIC_URLS)
                 .permitAll()
                 .anyRequest()
                 .authenticated()
